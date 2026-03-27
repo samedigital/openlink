@@ -2,7 +2,7 @@
   <h1>🔗 OpenLink</h1>
   <p>A free, open-source link-in-bio tool. Better than Linktree — and completely yours.</p>
 
-  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Abdessamed-98/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/Abdessamed-98/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
+  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/samedigital/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/samedigital/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
 </div>
 
 ---
@@ -41,7 +41,7 @@ From your Supabase dashboard:
 
 ### Step 3 — Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Abdessamed-98/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/Abdessamed-98/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/samedigital/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/samedigital/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
 
 Paste your 4 keys when Vercel asks, then hit **Deploy**. Vercel will automatically:
 - Clone the repo to your own GitHub account
@@ -56,7 +56,7 @@ Once it's live, visit **`your-site.vercel.app/register`** to create your account
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/Abdessamed-98/openlink.git
+git clone https://github.com/samedigital/openlink.git
 cd openlink
 
 # 2. Install dependencies
