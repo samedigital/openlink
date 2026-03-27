@@ -44,11 +44,6 @@ You need 4 values from Supabase. They're in **2 places**:
 
 > In the ORM connection strings, replace `[YOUR-PASSWORD]` with the password you set in Step 1.
 
-**One more thing** — disable email confirmation so users can sign in immediately:
-Go to **Authentication → Providers → Email** and turn off **Confirm email**.
-
-> Without this, new accounts can't log in until they click a confirmation link.
-
 ### Step 3 — Deploy to Vercel
 
 1. Go to [vercel.com](https://vercel.com) and sign up for free (no GitHub needed)
