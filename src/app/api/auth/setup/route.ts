@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 
-export async function POST() {
+export async function POST(req: NextRequest) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -17,18 +17,29 @@ export async function POST() {
   });
   if (existing) return NextResponse.json(existing);
 
-  // Derive a clean username from email
-  const baseUsername = user.email!
-    .split("@")[0]
-    .replace(/[^a-z0-9]/gi, "")
-    .toLowerCase()
-    .slice(0, 20);
+  // Use provided username or derive from email
+  let body: { username?: string } = {};
+  try { body = await req.json(); } catch {}
 
-  // Ensure username is unique
-  let username = baseUsername;
-  let attempt = 1;
-  while (await prisma.user.findUnique({ where: { username } })) {
-    username = `${baseUsername}${attempt++}`;
+  let username = body.username?.trim().toLowerCase() || "";
+
+  if (!username) {
+    username = user.email!
+      .split("@")[0]
+      .replace(/[^a-z0-9]/gi, "")
+      .toLowerCase()
+      .slice(0, 20);
+  }
+
+  // Validate username format
+  if (!/^[a-z0-9_-]{3,20}$/.test(username)) {
+    return NextResponse.json({ error: "Invalid username format" }, { status: 400 });
+  }
+
+  // Check username taken
+  const taken = await prisma.user.findUnique({ where: { username } });
+  if (taken) {
+    return NextResponse.json({ error: "Username already taken" }, { status: 409 });
   }
 
   const newUser = await prisma.user.create({

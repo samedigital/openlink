@@ -1,60 +1,96 @@
-# OpenLink: The Free, Open Source Linktree Alternative
+<div align="center">
+  <h1>🔗 OpenLink</h1>
+  <p>A free, open-source link-in-bio tool. Better than Linktree — and completely yours.</p>
 
-OpenLink is a 100% free, fully open-source alternative to Linktree. It's built with modern web technologies and designed completely without paywalls. All premium features (custom fonts, themes, modular bento grids, video embeds, removal of branding) are included out-of-the-box for everyone.
+  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Abdessamed-98/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/Abdessamed-98/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
+</div>
 
-## Core Features
-1. **Zero Paywalls**: Every customization option is available to the end-user for free.
-2. **Self-Hostable**: Easily deployable on Vercel or Netlify with a Supabase PostgreSQL backend.
-3. **Design Excellence**: Choose between a classic vertical list or a modern "Bento Grid" modular layout. Premium animations powered by Framer Motion.
+---
 
-## 🏗️ System Architecture
+## ✨ Features
 
-Our stack ensures high performance and scalability by utilizing **Next.js 15 (App Router)** and **TypeScript**.
+- 🎨 **6 themes** — Default, Light, Midnight, Cyberpunk, Emerald, Minimal
+- 🔗 **Drag & drop** link reordering
+- 🪩 **Button styles** — Glass, Filled, Outline, Hard Shadow
+- ✨ **Hover effects** — Lift, Wiggle, Glow
+- 📱 **Live preview** while editing
+- 🆓 **Completely free** — your data, your hosting, no branding
 
-### Infrastructure & ISR Routing
+---
 
-The application utilizes **Incremental Static Regeneration (ISR)** to ensure blazingly fast load times for user profiles (`/[username]`) while allowing dynamic updates.
+## 🚀 Deploy in 3 Steps
 
-1. **Routing (`/[username]/page.tsx`)**:
-   - The profile pages fetch user data and link blocks directly from the Supabase database via Prisma.
-   - Using Next.js `generateStaticParams`, we can optionally pre-build common profiles.
-   - Using `export const revalidate = 60;`, the page is cached at the edge (CDN) and regenerated in the background every 60 seconds.
-   - **Benefit**: End users get instantly loading static pages (SEO-optimized, no DB query wait time), but updates (like adding a new block) still reflect quickly without a full site rebuild.
+### Step 1 — Create a Supabase project
 
-2. **Database & Auth (Supabase)**:
-   - Supabase replaces Firebase, offering a fully open-source PostgreSQL database.
-   - Prisma ORM is used to interface with the database. See `prisma/schema.prisma` for the flexible `Block` and `User` schema tailored to modular layouts.
-   
-3. **Admin Dashboard (Shadcn/UI)**:
-   - Protected routes (`/admin/*`) use Server Actions and rely on Shadcn components for an uncompromising developer and user admin experience.
+1. Go to [supabase.com](https://supabase.com) and sign up for free
+2. Click **New project**, fill in a name and a database password (save the password — you'll need it)
+3. Wait ~1 minute for it to spin up
 
-## 🚀 5-Minute Deployment Guide
+### Step 2 — Get your 4 keys
 
-Follow these steps to deploy your completely free instance of OpenLink.
+From your Supabase dashboard:
 
-### 1. Database Setup (Supabase)
-1. Go to [Supabase](https://supabase.com/) and create a free account + new project.
-2. Once the project is provisioned, go to **Project Settings -> Database**.
-3. Copy the **Transaction connection string (Pooler)** and set it as your `DATABASE_URL`.
-4. Copy the **Session connection string (Direct routing)** and set it as your `DIRECT_URL`.
+| Variable | Where to find it |
+|----------|-----------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Project Settings → API → **Project URL** |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Project Settings → API → **anon / public** key |
+| `DATABASE_URL` | Project Settings → Database → Connection string → **Transaction** (port 6543) — append `?pgbouncer=true` |
+| `DIRECT_URL` | Project Settings → Database → Connection string → **Session** (port 5432) |
 
-### 2. Prepare the Codebase
-1. Fork or clone this repository.
-2. Run `npm install` to install dependencies.
-3. Create a `.env` file in the root based on `.env.example`:
-   ```env
-   DATABASE_URL="postgres://..."
-   DIRECT_URL="postgres://..."
-   ```
-4. Push the schema to your database: 
-   ```bash
-   npx prisma db push
-   ```
+> In both connection strings, replace `[YOUR-PASSWORD]` with the database password you set in Step 1.
 
-### 3. Deploy to Vercel
-1. Log in to [Vercel](https://vercel.com/) and click **Add New... -> Project**.
-2. Import your GitHub repository.
-3. In the **Environment Variables** section, paste both `DATABASE_URL` and `DIRECT_URL`.
-4. Click **Deploy**.
+### Step 3 — Click Deploy
 
-Within 5 minutes, your custom Linktree alternative is live, completely free, and ready to scale effortlessly!
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Abdessamed-98/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/Abdessamed-98/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
+
+Paste your 4 keys when Vercel asks, then hit **Deploy**. Vercel will automatically:
+- Clone the repo to your own GitHub account
+- Create all database tables
+- Deploy your site live
+
+Once it's live, visit **`your-site.vercel.app/register`** to create your account. Done.
+
+---
+
+## 🛠 Local Development
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Abdessamed-98/openlink.git
+cd openlink
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables
+cp .env.example .env.local
+# Fill in your Supabase keys in .env.local
+
+# 4. Generate Prisma client
+npx prisma generate
+
+# 5. Run the app
+npm run dev
+```
+
+Visit [http://localhost:3000/register](http://localhost:3000/register) to create your account.
+
+---
+
+## 🏗 Tech Stack
+
+| | |
+|--|--|
+| **Framework** | [Next.js 15](https://nextjs.org) (App Router) |
+| **Auth + Database** | [Supabase](https://supabase.com) |
+| **ORM** | [Prisma](https://prisma.io) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com) |
+| **Animations** | [Framer Motion](https://www.framer.com/motion/) |
+| **Drag & Drop** | [@dnd-kit](https://dndkit.com) |
+| **Hosting** | [Vercel](https://vercel.com) |
+
+---
+
+## 📄 License
+
+MIT — free to use, modify, and distribute.
