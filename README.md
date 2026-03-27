@@ -26,16 +26,28 @@
 
 ### Step 2 — Get your 4 keys
 
-From your Supabase dashboard:
+You need 4 values from Supabase. They're in **2 places**:
 
-| Variable | Where to find it |
-|----------|-----------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Project Settings → API → **Project URL** |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Project Settings → API → **anon / public** key |
-| `DATABASE_URL` | Project Settings → Database → Connection string → **Transaction** (port 6543) — append `?pgbouncer=true` |
-| `DIRECT_URL` | Project Settings → Database → Connection string → **Session** (port 5432) |
+**Place 1 — Project Overview page → click the Copy button (top right)**
 
-> In both connection strings, replace `[YOUR-PASSWORD]` with the database password you set in Step 1.
+| Variable | Label in dropdown |
+|----------|------------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | **Project URL** |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | **Publishable key** |
+
+**Place 2 — Connect → ORM tab (top of dashboard)**
+
+| Variable | Label |
+|----------|-------|
+| `DATABASE_URL` | The first connection string (port 6543) |
+| `DIRECT_URL` | The second connection string (port 5432) |
+
+> In the ORM connection strings, replace `[YOUR-PASSWORD]` with the password you set in Step 1.
+
+**One more thing** — disable email confirmation so users can sign in immediately:
+Go to **Authentication → Providers → Email** and turn off **Confirm email**.
+
+> Without this, new accounts can't log in until they click a confirmation link.
 
 ### Step 3 — Deploy to Vercel
 
