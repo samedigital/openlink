@@ -1,8 +1,6 @@
 <div align="center">
   <h1>🔗 OpenLink</h1>
   <p>A free, open-source link-in-bio tool. Better than Linktree — and completely yours.</p>
-
-  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/samedigital/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/samedigital/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
 </div>
 
 ---
@@ -23,7 +21,7 @@
 ### Step 1 — Create a Supabase project
 
 1. Go to [supabase.com](https://supabase.com) and sign up for free
-2. Click **New project**, fill in a name and a database password (save the password — you'll need it)
+2. Click **New project**, fill in a name and a database password (save it — you'll need it)
 3. Wait ~1 minute for it to spin up
 
 ### Step 2 — Get your 4 keys
@@ -39,14 +37,15 @@ From your Supabase dashboard:
 
 > In both connection strings, replace `[YOUR-PASSWORD]` with the database password you set in Step 1.
 
-### Step 3 — Click Deploy
+### Step 3 — Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/samedigital/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Get%20these%20from%20your%20Supabase%20project%20settings&envLink=https://github.com/samedigital/openlink%23-setup-guide&project-name=openlink&repository-name=openlink)
+1. Go to [vercel.com](https://vercel.com) and sign up for free (no GitHub needed)
+2. Click **Add New Project** → **Import Git Repository**
+3. Paste this URL: `https://github.com/samedigital/openlink`
+4. Under **Environment Variables**, add your 4 keys from Step 2
+5. Click **Deploy**
 
-Paste your 4 keys when Vercel asks, then hit **Deploy**. Vercel will automatically:
-- Clone the repo to your own GitHub account
-- Create all database tables
-- Deploy your site live
+Vercel will automatically build the project and create your database tables.
 
 Once it's live, visit **`your-site.vercel.app/register`** to create your account. Done.
 
