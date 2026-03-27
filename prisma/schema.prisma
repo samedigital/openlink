@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  supabaseId  String   @unique
+  email       String   @unique
+  username    String   @unique
+  fullName    String?
+  bio         String?
+  avatarUrl   String?
+
+  // Appearance
+  theme       String   @default("default")
+  buttonStyle String   @default("glass")
+  buttonShape String   @default("rounded-2xl")
+  hoverEffect String   @default("lift")
+  fontFamily  String   @default("font-sans")
+
+  // SEO fields
+  metaTitle   String?
+  metaDesc    String?
+
+  blocks      Block[]
+  socials     Social[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([username])
+}
+
+enum BlockType {
+  LINK
+  SOCIAL_GRID
+  YOUTUBE_EMBED
+  SPOTIFY_EMBED
+  HEADER
+  SPACER
+}
+
+model Block {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type      BlockType @default(LINK)
+  title     String?
+  url       String?
+  iconName  String?
+
+  variant   String    @default("list")
+  order     Int       @default(0)
+  isEnabled Boolean   @default(true)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Social {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform  String
+  handle    String
+  url       String
+  order     Int      @default(0)
+
+  @@index([userId])
+}
