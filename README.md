@@ -46,12 +46,12 @@ You need 4 values from Supabase. They're in **2 places**:
 
 ### Step 3 — Deploy to Vercel
 
-1. Go to [vercel.com](https://vercel.com) and sign up for free
-2. Click **Add New Project** → **Import Git Repository**
-3. Connect your **GitHub** account when prompted
-4. Search for `samedigital/openlink` and select it
-5. Under **Environment Variables**, add your 4 keys from Step 2
-6. Click **Deploy**
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/samedigital/openlink&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,DATABASE_URL,DIRECT_URL&envDescription=Your%20Supabase%20project%20keys&project-name=openlink&repository-name=openlink)
+
+1. Click the button above
+2. Sign in with GitHub — Vercel will fork the repo to your account automatically
+3. Fill in your 4 keys from Step 2 when prompted
+4. Click **Deploy**
 
 Vercel will automatically build the project and create your database tables.
 
